@@ -159,8 +159,11 @@ int bitXor(int x, int y) {
  *   Rating: 1
  */
 int tmin(void) {
-
-  return 2;
+	//intento: Pienso que el menor valor con signo es 1 con 31 ceros
+  //Se utiliza "<<" para que se desplace
+  //Al ser 32 bites el enunciado, 4 bytes, se desplaza 31 espacios 
+  //hasta uno antes pues seria el signo negativo.
+  return 1<<31;
 
 }
 //2
