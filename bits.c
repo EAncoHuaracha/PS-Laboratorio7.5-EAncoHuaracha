@@ -414,5 +414,16 @@ int floatFloat2Int(unsigned uf) {
  *   Rating: 4
  */
 unsigned floatPower2(int x) {
-    return 2;
+	// si x es mayor a 127 entonces es mayor es normalizado
+	if (x > 127)  
+		return 0xFF << 23;
+	// si x es menor a -149 entonces se devuelve 0 se toma como desnormalizado
+  else if (x < -149)  
+		return 0; 
+
+	//si x es mayor o igual a -126 entonces se considera un menor normalizado
+  else if (x >= -126)  
+		return (x + 127) << 23; 
+  else 
+		return 1 << (x + 126 + 23);
 }
