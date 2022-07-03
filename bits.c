@@ -199,7 +199,7 @@ int isTmax(int x) {
 int allOddBits(int x) {
 
 	//se crea una mascara
-	int m = 0xAAAAAAAA;
+	int m = 0xAA + ( 0xAA << 8 ) + ( 0xAA << 16 );
 
 	// utilizamos XOR para que los 1 sean 0 en las posiciones impar
 	int a = x ^ m;
