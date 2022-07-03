@@ -248,7 +248,14 @@ int isAsciiDigit(int x) {
  *   Rating: 3
  */
 int conditional(int x, int y, int z) {
-  return 2;
+	// si x es diferente a  entonces se resta 1 de 0
+	// de lo contrario se resta 1 de 1
+	int m = (!x + ~0x00);
+
+	// si x no es cero se usa & con z
+	// si x es cero se usa & con y
+	// retorna el resultado
+  return ((~m) & z) | (m & y);
 }
 /* 
  * isLessOrEqual - if x <= y  then return 1, else return 0 
