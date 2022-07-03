@@ -369,7 +369,36 @@ unsigned floatScale2(unsigned uf) {
  *   Rating: 4
  */
 int floatFloat2Int(unsigned uf) {
-  return 2;
+  // se define el signo
+  unsigned sign = (uf >> 31) & 0x1;
+ 
+  // se define la parte del exponente 
+  unsigned exp = (uf >> 23) & 0xFF;
+ 
+  // se define la fraccion (mantisa)
+  unsigned frac = uf & 0x7FFFFF;
+
+	// tenemos que calcular el valor de E para e + d
+	// se resta al exponente
+	int E = exp - 127;
+
+	// si después de la resta E es negativo entonces retorna 0
+  if (E < 0)  
+		return 0;
+	// si el exponente es igual a 255 o si e es mayor igual a 31 se retorna el valor definido en la descripcion
+  if (exp == 0xFF || E >= 31)  
+		return 0x80000000u;
+  // se estable el valor para la fraccion
+	else {
+    frac = frac | (1 << 23);
+    if (E <= 23)  frac >>= (23 - E);
+    else  frac <<= (E - 23);
+  }
+  // si el signo es verdadero se retorna en negativo caso contrario positivo
+  if (sign) 
+		return -frac;
+  else  
+		return frac;
 }
 /* 
  * floatPower2 - Return bit-level equivalent of the expression 2.0^x
