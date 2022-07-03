@@ -300,7 +300,21 @@ int logicalNeg(int x) {
  *  Rating: 4
  */
 int howManyBits(int x) {
-  return 0;
+	// se inicializa la variable alm en 0
+	int alm = 0;
+	// se invierte todos los numeros negativos
+  x = x ^ (x >> 31);
+
+	// se usa una busqueda binaria para encontrar el log2(alm)
+  alm = alm + ((!!(x >> (alm + 16))) << 4);
+  alm = alm + ((!!(x >> (alm + 8))) << 3);
+  alm = alm + ((!!(x >> (alm + 4))) << 2);
+  alm = alm + ((!!(x >> (alm + 2))) << 1);
+  alm = alm + ((!!(x >> (alm + 1))));
+  alm = alm + (x >> alm);
+
+	// se suma 1 para representar el signo
+  return alm + 1;
 }
 //float
 /* 
