@@ -333,7 +333,28 @@ int howManyBits(int x) {
  *   Rating: 4
  */
 unsigned floatScale2(unsigned uf) {
-  return 2;
+	// se define el signo
+	unsigned sign = (uf >> 31) & 0x1;
+
+	// se define la parte del exponente 
+  unsigned exp = (uf >> 23) & 0xFF;
+
+	// se define la fraccion (mantisa)
+  unsigned frac = uf & 0x7FFFFF;
+
+	// si el exponente es igual a 0xFF entonces retorna el argumento
+  if (exp == 0xFF)  
+		return uf;
+	// si el exponente es igual a 0 recorre
+  else if (exp == 0) {
+    frac <<= 1;
+    return (sign << 31) | (exp << 23) | frac;
+  }
+	// en caso contrario aumenta en 1 el exponente y luego retorna
+  else {
+    exp += 1;
+    return (sign << 31) | (exp << 23) | frac;
+  }
 }
 /* 
  * floatFloat2Int - Return bit-level equivalent of expression (int) f
