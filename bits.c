@@ -224,7 +224,8 @@ int allOddBits(int x) {
  *   Rating: 2
  */
 int negate(int x) {
-  return 2;
+	// para convertir un numero en negativo primero se sacaria su negacion y sumamos 1
+  return (~x + 1);
 }
 //3
 /* 
