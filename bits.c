@@ -289,7 +289,10 @@ int isLessOrEqual(int x, int y) {
  *   Rating: 4 
  */
 int logicalNeg(int x) {
-  return 2;
+	// determinamos el signo utilizando el or con el negativo de x mas 1 recorriendo todo
+  int a = (x | (~x + 1)) >> 31; 
+	// se retorna si x es 0 caso contrario -1
+  return a + 1;
 }
 /* howManyBits - return the minimum number of bits required to represent x in
  *             two's complement
