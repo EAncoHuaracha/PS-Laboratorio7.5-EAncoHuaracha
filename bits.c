@@ -175,7 +175,18 @@ int tmin(void) {
  *   Rating: 1
  */
 int isTmax(int x) {
-  return 2;
+  // se crea un variable i dandole el valor de x+1 
+	int i = x + 1; 
+	// si se estaba agregando 1 daria como resultado inicial 1
+  x = x + i;
+
+	//se cambia los bits para obtener 1 y agrega 0 o 1
+  x = ~x;
+  i = !i;
+  x = x + i;
+
+	//retorna el opuesto para obtener 1 como verdadero o 0 para falso
+  return !x;
 }
 /* 
  * allOddBits - return 1 if all odd-numbered bits in word set to 1
