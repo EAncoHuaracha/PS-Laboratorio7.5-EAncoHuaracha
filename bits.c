@@ -197,7 +197,24 @@ int isTmax(int x) {
  *   Rating: 2
  */
 int allOddBits(int x) {
-  return 2;
+
+	//se crea una mascara
+	int m = 0xAAAAAAAA;
+
+	// utilizamos XOR para que los 1 sean 0 en las posiciones impar
+	int a = x ^ m;
+	
+	// se invierte y se almacena en b para que los 0 se conviertan en 1
+	int b = ~a;
+
+	// se aplica & para que las posiciones par tenga 0
+	int c = b & m;
+	
+	// se invierte c y se le suma la mascara posible resultado 1111 1111
+	int d = ~c + m;
+
+	// para tener 0000 0000 se invierte y con ! nos restorna 1 que es lo que nos pide
+  return !(~d);
 }
 /* 
  * negate - return -x 
