@@ -265,7 +265,15 @@ int conditional(int x, int y, int z) {
  *   Rating: 3
  */
 int isLessOrEqual(int x, int y) {
-  return 2;
+	// se copia el siguiente bit en todos los lugares y luego se devuelve 1 si es negativo o 0 positivo
+  int tmpY = (y >> 31) & 1;
+	int tmpX = (x >> 31) & 1;
+
+	//se comprueba si x e y son iguales
+	
+	//luego verficamos si x es menor que y
+	int z = (!(tmpY^tmpX)) & (((x+~y)>>31) & 1);
+  return z|((!tmpY) & tmpX);
 }
 //4
 /* 
