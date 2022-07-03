@@ -238,7 +238,11 @@ int negate(int x) {
  *   Rating: 3
  */
 int isAsciiDigit(int x) {
-  return 2;
+	//del quinto al octavo y ultimo bit
+	int a = !((x >> 4) ^ 0x3);
+	// del primero cuarto y ultimo bit
+  int b = !(((x & 0xF) + 0x6) >> 4);
+  return a & b;
 }
 /* 
  * conditional - same as x ? y : z 
